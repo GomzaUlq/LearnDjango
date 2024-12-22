@@ -1,27 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% block title %}
     <meta charset="UTF-8">
-    <title>{% block title %}My Site{% endblock %}</title>
+    <title>Главная страница</title>
+    {% endblock %}
 </head>
 <body>
     <header>
-        {% block pagename %}
-        <h1>Главная страница</h1>
-        {% endblock %}
+        {% block pagename %}<h1>Главная страница</h1> {% endblock %}
     </header>
 
     <nav>
-        <br><a href=""><h2>{{home_page}}</h2></a><br>
-        <br><a href="tea"><h2>{{magazine_tea}}</h2></a><br>
-        <br><a href="cart"><h2>{{product_cart}}</h2></a><br>
+        <br><a href=""><h2>Главная</h2></a>
+        <br><a href="tea"><h2>Магазин</h2></a>
+        <br><a href="cart"><h2>Корзина</h2></a>
     </nav>
-
-
-
     <main>
-        {% block content%}
-        {% endblock %}
+        {% block content %} {% endblock %}
     </main>
 
 </body>
