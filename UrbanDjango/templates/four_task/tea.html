@@ -5,10 +5,14 @@
 {% block pagename %}<h1>Магазин</h1>{% endblock %}
 
 {% block content%}
-        {% for i in tea_all %}
-            <br><a>{{i}}</a>&nbsp;<button>{{buy}}</button>
-        {% endfor %}
+        <ul>
+             {% for i in tea_all %}
+            <li><a>{{i}}</a>&nbsp;<button>{{buy}}</button></li>
+             {% endfor %}
+        </ul>
+
     <br><form action="/">
         <button>Вернуться обратно</button>
     </form>
 {% endblock %}
+
