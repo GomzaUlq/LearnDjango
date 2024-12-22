@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% block title %}
     <meta charset="UTF-8">
-    <title>Главная страница</title>
-    {% endblock %}
+    <title>
+    {% block title %}Главная страница{% endblock %}
+    </title>
+
+
 </head>
 <body>
     <header>
@@ -13,8 +15,8 @@
 
     <nav>
         <br><a href=""><h2>Главная</h2></a>
-        <br><a href="tea"><h2>Магазин</h2></a>
-        <br><a href="cart"><h2>Корзина</h2></a>
+        <br><a href="tea/"><h2>Магазин</h2></a>
+        <br><a href="cart/"><h2>Корзина</h2></a>
     </nav>
     <main>
         {% block content %} {% endblock %}
