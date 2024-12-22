@@ -1,0 +1,14 @@
+{% extends "menu.html" %}
+
+{% block title %}Магазин{% endblock %}
+
+{% block pagename %}<h1>Магазин</h1>{% endblock %}
+
+{% block content%}
+        {% for i in tea_all %}
+            <br><a>{{i}}</a>&nbsp;<button>{{buy}}</button>
+        {% endfor %}
+    <br><form action="/">
+        <button>Вернуться обратно</button>
+    </form>
+{% endblock %}
