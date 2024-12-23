@@ -3,30 +3,33 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import UserRegister
 
+users = ['Alex', 'Vasya', 'Urban']
+
 
 # Create your views here.
 def sign_up_by_html(request):
-    users = ['Alex', 'Vasya', 'Urban']
     info = {}
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
         repeat_password = request.POST.get('repeat_password')
         age = request.POST.get('age')
-        if int(password) == int(repeat_password) and int(age) >= 18 and username != username:
+        print(username)
+        if password == repeat_password and int(age) >= 18 and username not in users:
             users.append(username)
             print(users)
             return HttpResponse(f'Приветствуем, {username}!"')
-        elif int(password) != int(repeat_password):
-            return HttpResponse('Пароли не совпадают')
-        elif int(age) < 18:
-            return HttpResponse('Вы должны быть старше 18')
+        if password != repeat_password:
+            info['error'] = 'Пароли не совпадают'
+        if int(age) < 18:
+            info['error'] = ('Вы должны быть старше 18')
+        if username in users:
+            info['error'] = ('Пользователь с таким именем уже существует')
 
-    return render(request, 'registrarion_page.html', {'form': info})
+    return render(request, 'fifth_task/registrarion_page.html', context=info)
 
 
 def sign_up_by_django(request):
-    users = ['Alex', 'Vasya', 'Urban']
     info = {}
     if request.method == 'POST':
         form = UserRegister(request.POST)
@@ -35,7 +38,17 @@ def sign_up_by_django(request):
             password = form.cleaned_data['password']
             repeat_password = form.cleaned_data['repeat_password']
             age = form.cleaned_data['age']
-            return HttpResponse(f'Приветствуем, {username}!"')
-    else:
-        form = UserRegister()
-    return render(request, 'registrarion_page.html', {'form': info})
+            print(username)
+            if password == repeat_password and int(age) >= 18 and username not in users:
+                users.append(username)
+                print(users)
+                return HttpResponse(f'Приветствуем, {username}!"')
+            if password != repeat_password:
+                info['error'] = 'Пароли не совпадают'
+            if int(age) < 18:
+                info['error'] = ('Вы должны быть старше 18')
+            if username in users:
+                info['error'] = ('Пользователь с таким именем уже существует')
+        else:
+            form = UserRegister()
+    return render(request, 'fifth_task/registrarion_page.html', {'form': info})
